@@ -22,10 +22,7 @@ class BookAppoinmentRequest extends FormRequest
             'patient_id' => 'required|exists:users,id',
             'doctor_availability_id' => [
                 'required',
-                Rule::exists('appointments', 'id')
-                    ->where(function ($query) {
-                        return $query->where('status','!=', 'Confirmed');
-                    }),
+                'exists:doctor_availabilities,id'
             ],
         ];
     }
